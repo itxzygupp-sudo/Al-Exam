@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ML Complete Exam Summary</title>
+    <!-- MathJax for rendering Mathematical Formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #f59e0b;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --border: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Sarabun', 'SF Pro Text', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+            padding: 12px;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0 0 4px 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Touch-Optimized Navigation Bar for iPad */
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            background: #cbd5e1;
+            padding: 6px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 110px;
+            padding: 12px 10px;
+            border: none;
+            background: transparent;
+            color: #334155;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--card-bg);
+            color: var(--secondary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+        }
+
+        /* Page Content Display Control */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block !important;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 0;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .badge {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .formula-box {
+            background-color: #f8fafc;
+            padding: 10px 14px;
+            border-left: 4px solid var(--secondary);
+            font-size: 0.9rem;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: #0f172a;
+            color: #38bdf8;
+            padding: 12px;
+            border-radius: 8px;
+            display: block;
+            white-space: pre-wrap;
+            font-family: 'SF Mono', Menlo, Monaco, monospace;
+            font-size: 0.82rem;
+            overflow-x: auto;
+        }
+
+        ul, ol { padding-left: 18px; margin: 5px 0; }
+        li { margin-bottom: 6px; font-size: 0.9rem; }
+
+        .highlight { color: #dc2626; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📱 Complete ML Exam Summary</h1>
+        <p>สรุปเนื้อหาเตรียมสอบปิดตำรา (บทที่ 08 - 11) | รองรับระบบสัมผัส iPad</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <div class="nav-tabs">
+        <button id="btn-vocab" class="tab-btn active" onclick="showPage('vocab')">🏷️ คำศัพท์ (25 คำ)</button>
+        <button id="btn-chapters" class="tab-btn" onclick="showPage('chapters')">📚 สรุปย่อ 4 บท</button>
+        <button id="btn-math" class="tab-btn" onclick="showPage('math')">🧮 ขั้นตอนคำนวณ</button>
+        <button id="btn-code" class="tab-btn" onclick="showPage('code')">💻 โค้ด Python</button>
+    </div>
+
+    <!-- PAGE 1: VOCABULARY -->
+    <div id="page-vocab" class="page-section active">
+        <div class="card">
+            <h2>🏷️ ตารางคำศัพท์และนิยามหลักทั้งหมด (สำหรับจับคู่ & กากบาท)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>หมวดหมู่</th>
+                        <th>คำศัพท์ (Vocabulary)</th>
+                        <th>ความหมายและจุดเน้นข้อสอบ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ch 8 -->
+                    <tr><td rowspan="7"><strong>Ch 8: Linear Regression</strong></td><td>Supervised Learning</td><td>การเรียนรู้แบบมีผู้สอน (ข้อมูลมีเฉลย/Label $y$)</td></tr>
+                    <tr><td>Regression</td><td>การทำนายค่าตัวเลขต่อเนื่อง (Continuous Values)</td></tr>
+                    <tr><td>Feature ($X$) / Label ($y$)</td><td>$X$ คือตัวแปรต้น (Input) | $y$ คือตัวแปรตาม (Target/เฉลย)</td></tr>
+                    <tr><td>Least Squares</td><td>วิธีหาเส้นถดถอยโดยทำให้ผลรวม Error กำลังสอง (SSE) ต่ำที่สุด</td></tr>
+                    <tr><td>Residual / Error</td><td>ระยะห่างแนวตั้งระหว่างค่าจริงกับค่าทำนาย ($\hat{y} - y$)</td></tr>
+                    <tr><td>MSE / RMSE</td><td>MSE = ค่าเฉลี่ย Error กำลังสอง | RMSE = MSE ถอดราก (หน่วยเดียวกับ $y$)</td></tr>
+                    <tr><td>$R^2$ Score / Extrapolation</td><td>$R^2$ = สัดส่วนอธิบายความผันแปร ($1$=ดีมาก) | Extrapolation = เดานอกช่วงข้อมูลฝึก</td></tr>
+
+                    <!-- Ch 9 -->
+                    <tr><td rowspan="8"><strong>Ch 9: K-NN & Metrics</strong></td><td>Classification</td><td>การจำแนกประเภทข้อมูลออกเป็นกลุ่ม/คลาส (Discrete Classes)</td></tr>
+                    <tr><td>K-NN (K-Nearest Neighbors)</td><td>การจำแนกประเภทโดยหาเพื่อนบ้านใกล้สุด $K$ ตัว แล้วโหวตเสียงข้างมาก</td></tr>
+                    <tr><td>Euclidean Distance</td><td>วัดระยะทางเส้นตรง $\sqrt{\sum (a_i - b_i)^2}$ (Default ของ K-NN)</td></tr>
+                    <tr><td>Manhattan Distance</td><td>วัดระยะทางแนวแกน $\sum |a_i - b_i|$ (ทนต่อ Outliers ได้ดีกว่า)</td></tr>
+                    <tr><td>Feature Scaling</td><td>ปรับสเกลฟีเจอร์ให้อยู่ในช่วงใกล้เคียงกัน <span class="highlight">จำเป็นมากสำหรับ K-NN</span></td></tr>
+                    <tr><td>Confusion Matrix</td><td>ตารางเปรียบเทียบผลการทำนายกับค่าจริง (TP, FP, FN, TN)</td></tr>
+                    <tr><td>Precision / Recall / F1</td><td>Precision = แม่นยำเมื่อทายบวก | Recall = จับบวกจริงได้ครบ | F1 = ค่าเฉลี่ยฮาร์มอนิก</td></tr>
+                    <tr><td>Overfitting / Underfitting</td><td>Overfitting = จำข้อสอบ (Variance สูง) | Underfitting = เรียบง่ายเกิน (Bias สูง)</td></tr>
+
+                    <!-- Ch 10 -->
+                    <tr><td rowspan="4"><strong>Ch 10: Decision Tree</strong></td><td>Decision Tree Structure</td><td>ประกอบด้วย Root Node (เริ่มต้น) $\rightarrow$ Decision Node (เงื่อนไข) $\rightarrow$ Leaf Node (คำตอบ)</td></tr>
+                    <tr><td>Entropy</td><td>ค่าวัดระดับความสับสน/ความไม่บริสุทธิ์ ($0$ = บริสุทธิ์สมบูรณ์)</td></tr>
+                    <tr><td>Information Gain</td><td>ค่าความสับสนที่ลดลงหลังการแบ่งกิ่ง (ใช้เลือก Node ใน ID3)</td></tr>
+                    <tr><td>ID3 vs CART Algorithm</td><td>ID3 ใช้ Entropy + Information Gain | CART ใช้ Gini Impurity (Default ของ sklearn)</td></tr>
+
+                    <!-- Ch 11 -->
+                    <tr><td rowspan="6"><strong>Ch 11: Neural Network</strong></td><td>Neuron / Weight / Bias</td><td>Neuron = หน่วยประมวลผล | Weight ($w$) = น้ำหนักความสำคัญ | Bias ($b$) = ค่าปรับเกณฑ์ baseline</td></tr>
+                    <tr><td>Activation Function</td><td>ฟังก์ชันกระตุ้นที่ใส่ความไม่เป็นเชิงเส้น (Non-linearity) เช่น Sigmoid, ReLU</td></tr>
+                    <tr><td>Perceptron</td><td>นิวรอนชั้นเดียว แยกได้เฉพาะเชิงเส้น <span class="highlight">ไม่สามารถแก้ XOR ได้</span></td></tr>
+                    <tr><td>MLP (Multi-Layer Perceptron)</td><td>โครงข่ายประสาทที่มี Hidden Layer สามารถแก้ปัญหาซับซ้อนอย่าง <span class="highlight">XOR</span> ได้</td></tr>
+                    <tr><td>Forward / Backpropagation</td><td>Forward = ส่งสัญญาณคำนวณไปข้างหน้า | Backpropagation = ส่ง Error ย้อนกลับหา Gradient</td></tr>
+                    <tr><td>Gradient Descent / Epoch</td><td>Gradient Descent = อัปเดตน้ำหนักลด Loss | Epoch = อ่านข้อมูลเทรนรอบใหญ่ครบ 1 รอบ</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGE 2: CHAPTER BREAKDOWN -->
+    <div id="page-chapters" class="page-section">
+        <div class="grid-2">
+            <!-- Ch 8 -->
+            <div class="card">
+                <span class="badge">บทที่ 08</span>
+                <h2>Linear Regression</h2>
+                <ul>
+                    <li><strong>สมการโมเดล:</strong> $\hat{y} = w \cdot x + b$</li>
+                    <li><strong>Least Squares Loss:</strong> 
+                        $$E(w,b) = \sum_{i=1}^n (y_i - b - w \cdot x_i)^2$$
+                    </li>
+                    <li><strong>Closed-Form Solution:</strong>
+                        $$w = \frac{\sum x_i y_i - \frac{1}{n}(\sum x_i)(\sum y_i)}{\sum x_i^2 - \frac{1}{n}(\sum x_i)^2}, \quad b = \bar{y} - w \cdot \bar{x}$$
+                    </li>
+                    <li><strong>การวัดผล:</strong> MSE, RMSE, $R^2$</li>
+                </ul>
+            </div>
+
+            <!-- Ch 9 -->
+            <div class="card">
+                <span class="badge">บทที่ 09</span>
+                <h2>K-NN & Classification</h2>
+                <ul>
+                    <li><strong>หลักการ:</strong> วัดระยะทางหาเพื่อนบ้านใกล้สุด $K$ ตัว แล้วโหวต</li>
+                    <li><strong>การเลือก K:</strong> 
+                        <ul>
+                            <li>$K$ เล็ก $\rightarrow$ Overfitting (Variance สูง)</li>
+                            <li>$K$ ใหญ่ $\rightarrow$ Underfitting (Bias สูง)</li>
+                        </ul>
+                    </li>
+                    <li><strong>ข้อแนะนำ:</strong> ใช้ $K$ เป็นเลขคี่เสมอเพื่อป้องกันการโหวตเสมอ</li>
+                    <li><strong>StandardScaler:</strong> $z = \frac{x - \mu}{\sigma}$</li>
+                </ul>
+            </div>
+
+            <!-- Ch 10 -->
+            <div class="card">
+                <span class="badge">บทที่ 10</span>
+                <h2>Decision Tree (ID3)</h2>
+                <ul>
+                    <li><strong>โครงสร้าง:</strong> Root $\rightarrow$ Decision Node $\rightarrow$ Leaf (Class)</li>
+                    <li><strong>Entropy รวม:</strong> 
+                        $$H(S) = -\sum_{i=1}^c p_i \log_2(p_i)$$
+                    </li>
+                    <li><strong>Weighted Entropy:</strong>
+                        $$Entropy(S, A) = \sum \frac{|S_v|}{|S|} H(S_v)$$
+                    </li>
+                    <li><strong>Information Gain:</strong>
+                        $$Gain(S, A) = H(S) - Entropy(S, A)$$
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Ch 11 -->
+            <div class="card">
+                <span class="badge">บทที่ 11</span>
+                <h2>Neural Network (ANN)</h2>
+                <ul>
+                    <li><strong>สมการนิวรอน:</strong> $\hat{y} = f(\sum w_i x_i + b)$</li>
+                    <li><strong>Sigmoid Activation:</strong> 
+                        $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
+                    </li>
+                    <li><strong>Forward Pass:</strong>
+                        $$z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}, \quad a^{(l)} = f(z^{(l)})$$
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: MATH & CALCULATION -->
+    <div id="page-math" class="page-section">
+        <div class="card">
+            <h2>🧮 ขั้นตอนการคำนวณสำหรับข้อสอบเขียนตอบ</h2>
+            
+            <h3>1. Decision Tree (ID3 Algorithm)</h3>
+            <ol>
+                <li><strong>คำนวณ Entropy รวม $H(S)$:</strong> หาจากสัดส่วนคลาสเป้าหมายทั้งหมด</li>
+                <li><strong>คำนวณ Entropy แยกกลุ่มย่อย $H(S_v)$:</strong> สำหรับทุกค่าของ Feature นั้น</li>
+                <li><strong>คำนวณ Weighted Entropy:</strong>
+                    <div class="formula-box">
+                        $$Entropy(S, A) = \sum \frac{|S_v|}{|S|} H(S_v)$$
+                    </div>
+                </li>
+                <li><strong>คำนวณ Information Gain:</strong>
+                    <div class="formula-box">
+                        $$Gain(S, A) = H(S) - Entropy(S, A)$$
+                    </div>
+                </li>
+                <li><strong>เลือก Root Node:</strong> เลือก Feature ที่ได้ค่า $Gain$ สูงที่สุด</li>
+            </ol>
+
+            <hr style="border:0; border-top:1px solid var(--border); margin:18px 0;">
+
+            <h3>2. ANN (Forward & Backward Pass)</h3>
+            <ul>
+                <li><strong>Forward Pass:</strong>
+                    <div class="formula-box">
+                        $$z_1 = W_1 x + b_1 \quad \rightarrow \quad h = \sigma(z_1)$$
+                        $$z_2 = W_2 h + b_2 \quad \rightarrow \quad \hat{y} = \sigma(z_2)$$
+                    </div>
+                </li>
+                <li><strong>Output Error Gradient ($\delta_2$):</strong>
+                    $$\delta_2 = (\hat{y} - t) \cdot \hat{y}(1 - \hat{y})$$
+                </li>
+                <li><strong>Hidden Error Gradient ($\delta_1$):</strong>
+                    $$\delta_1 = (W_2^T \delta_2) \odot h(1 - h)$$
+                </li>
+                <li><strong>Weight Update:</strong>
+                    $$W_{\text{new}} = W_{\text{old}} - \eta \cdot \frac{\partial L}{\partial W}$$
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CODE CHEAT SHEET -->
+    <div id="page-code" class="page-section">
+        <div class="card">
+            <h2>💻 รูปแบบโค้ด Scikit-Learn</h2>
+            <code># Pattern หลักของ Scikit-Learn
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
+
+# 1. K-NN Pipeline (ทำ Scaling เสมอ)
+knn = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=3))
+
+# 2. Decision Tree (ID3 = Entropy)
+dt = DecisionTreeClassifier(criterion='entropy', random_state=42)
+
+# 3. ANN (MLP Classifier)
+mlp = MLPClassifier(hidden_layer_sizes=(4,), activation='logistic', max_iter=1000)
+
+# 4. เรียกใช้งานในรูปแบบเดียวกันทั้งหมด
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = model.score(X_test, y_test)</code>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Improved Touch-friendly Page Switcher for iPad
+    function showPage(pageId) {
+        // Hide all pages
+        var sections = document.querySelectorAll('.page-section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].classList.remove('active');
+        }
+
+        // Deactivate all buttons
+        var buttons = document.querySelectorAll('.tab-btn');
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].classList.remove('active');
+        }
+
+        // Show selected page
+        var targetSection = document.getElementById('page-' + pageId);
+        var targetButton = document.getElementById('btn-' + pageId);
+
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+        if (targetButton) {
+            targetButton.classList.add('active');
+        }
+
+        // Re-render MathJax
+        if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise();
+        }
+    }
+</script>
+
+</body>
+</html>
